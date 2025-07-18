@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function SignInForm() {
   const { signIn } = useAuthActions();
@@ -38,7 +39,7 @@ export function SignInForm() {
         <CardDescription>Enter your email and password to access your account</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 mb-5">
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
@@ -78,9 +79,9 @@ export function SignInForm() {
           </Button>
           <p className="text-sm text-muted-foreground">
             Don't have an account?{" "}
-            <a href="/sign-up" className="text-primary hover:underline">
+            <Link to="/sign-up" className="text-primary hover:underline">
               Sign up
-            </a>
+            </Link>
           </p>
         </CardFooter>
       </form>

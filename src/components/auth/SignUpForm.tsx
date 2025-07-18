@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function SignUpForm() {
   const { signIn } = useAuthActions();
@@ -17,7 +18,6 @@ export function SignUpForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [role, setRole] = useState<"user" | "admin">("user");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,7 +31,8 @@ export function SignUpForm() {
     }
 
     try {
-      await signIn("password", { flow: "signUp", name, email, password, role });
+      // Always use role "user" for sign up
+      await signIn("password", { flow: "signUp", name, email, password, role: "user" });
       navigate("/dashboard");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to create account");
@@ -41,13 +42,13 @@ export function SignUpForm() {
   };
 
   return (
-    <Card className="w-full max-w-md">
+    <Card className="w-full max-w-md shadow-lg">
       <CardHeader>
         <CardTitle>Create Account</CardTitle>
         <CardDescription>Sign up to start booking your trips</CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 mb-5">
           {error && (
             <Alert variant="destructive">
               <AlertDescription>{error}</AlertDescription>
@@ -95,18 +96,6 @@ export function SignUpForm() {
               required
             />
           </div>
-          <div className="space-y-2">
-            <Label htmlFor="role">Role (optional, default: user)</Label>
-            <select
-              id="role"
-              value={role}
-              onChange={(e) => setRole(e.target.value as "user" | "admin")}
-              className="w-full p-2 border rounded"
-            >
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
         </CardContent>
         <CardFooter className="flex flex-col space-y-2">
           <Button type="submit" className="w-full" disabled={isLoading}>
@@ -121,9 +110,9 @@ export function SignUpForm() {
           </Button>
           <p className="text-sm text-muted-foreground">
             Already have an account?{" "}
-            <a href="/sign-in" className="text-primary hover:underline">
+            <Link to="/sign-in" className="text-primary hover:underline">
               Sign in
-            </a>
+            </Link>
           </p>
         </CardFooter>
       </form>
