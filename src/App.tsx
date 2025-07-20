@@ -1,9 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "@/lib/auth/ProtectedRoute";
-import { Dashboard } from "@/routes/dashboard/Dashboard";
-import { ThemeProvider } from "@/lib/theme-provider"
+import { ThemeProvider } from "@/lib/theme-provider";
 import { SignUpPage } from "@/components/auth/SignUpPage";
 import { SignInPage } from "@/components/auth/SignInPage";
+import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { HomePage } from "@/components/dashboard/HomePage";
+import { SettingsPage } from "@/components/dashboard/SettingsPage";
 
 function App() {
   return (
@@ -18,10 +20,13 @@ function App() {
             path="/dashboard"
             element={
               <ProtectedRoute requiredRole="user">
-                <Dashboard />
+                <DashboardLayout />
               </ProtectedRoute>
             }
-          />
+          >
+            <Route index element={<HomePage />} />
+            <Route path="settings" element={<SettingsPage />} />
+          </Route>
 
           {/* Redirect root to sign-in */}
           <Route path="/" element={<Navigate to="/sign-in" />} />
