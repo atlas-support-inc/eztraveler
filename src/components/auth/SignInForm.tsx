@@ -43,7 +43,7 @@ export function SignInForm() {
 
     try {
       await signIn("password", { flow: "signIn", email, password });
-      navigate("/dashboard");
+      navigate("/redirect");
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to sign in");
     } finally {

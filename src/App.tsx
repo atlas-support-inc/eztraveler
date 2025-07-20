@@ -1,11 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ProtectedRoute } from "@/lib/auth/ProtectedRoute";
+import { RoleBasedRedirector } from "@/lib/auth/RoleBasedRedirector";
 import { ThemeProvider } from "@/lib/theme-provider";
 import { SignUpPage } from "@/components/auth/SignUpPage";
 import { SignInPage } from "@/components/auth/SignInPage";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { HomePage } from "@/components/dashboard/HomePage";
 import { SettingsPage } from "@/components/dashboard/SettingsPage";
+import { AdminLayout } from "@/components/admin/AdminLayout";
+import { AdminHomePage } from "@/components/admin/AdminHomePage";
 
 function App() {
   return (
@@ -27,6 +30,21 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="settings" element={<SettingsPage />} />
           </Route>
+
+          {/* Protected admin dashboard */}
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute requiredRole="admin">
+                <AdminLayout />
+              </ProtectedRoute>
+            }
+          >
+            <Route index element={<AdminHomePage />} />
+          </Route>
+
+          {/* Role-based redirector */}
+          <Route path="/redirect" element={<RoleBasedRedirector />} />
 
           {/* Redirect root to sign-in */}
           <Route path="/" element={<Navigate to="/sign-in" />} />

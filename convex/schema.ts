@@ -23,9 +23,18 @@ export default defineSchema({
     .index("by_email", ["email"])
     .index("by_role", ["role"]),
 
+  hotels: defineTable({
+    name: v.string(),
+    description: v.string(),
+    location: v.string(),
+    pricePerNight: v.number(),
+    imageUrls: v.array(v.string()),
+    amenities: v.array(v.string()),
+  }),
+
   bookings: defineTable({
     userId: v.id("users"),
-    hotelId: v.string(),
+    hotelId: v.id("hotels"),
     hotelName: v.string(),
     checkIn: v.string(), // ISO date string
     checkOut: v.string(), // ISO date string
