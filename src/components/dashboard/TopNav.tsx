@@ -1,5 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CircleUser, Menu, Package2 } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -95,7 +96,8 @@ export function TopNav() {
         </SheetContent>
       </Sheet>
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
-        <div className="ml-auto flex-1 sm:flex-initial">
+        <div className="ml-auto flex items-center gap-2">
+          <ThemeToggle />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="secondary" size="icon" className="rounded-full">
@@ -106,7 +108,9 @@ export function TopNav() {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => navigate("/dashboard/settings")}>Settings</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/dashboard/settings")}>
+                Settings
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={handleSignOut}>Logout</DropdownMenuItem>
             </DropdownMenuContent>
