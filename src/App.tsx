@@ -7,6 +7,8 @@ import { SignInPage } from "@/components/auth/SignInPage";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { HomePage } from "@/components/dashboard/HomePage";
 import { SettingsPage } from "@/components/dashboard/SettingsPage";
+import { MyBookingsPage } from "@/components/dashboard/bookings/MyBookingsPage";
+import { HotelDetailsPage } from "@/components/dashboard/HotelDetailsPage";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { AdminHomePage } from "@/components/admin/AdminHomePage";
 
@@ -29,6 +31,8 @@ function App() {
           >
             <Route index element={<HomePage />} />
             <Route path="settings" element={<SettingsPage />} />
+            <Route path="bookings" element={<MyBookingsPage />} />
+            <Route path="hotel/:hotelId" element={<HotelDetailsPage />} />
           </Route>
 
           {/* Protected admin dashboard */}

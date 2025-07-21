@@ -54,6 +54,16 @@ export function TopNav() {
         >
           Settings
         </NavLink>
+        <NavLink
+          to="/dashboard/bookings"
+          className={({ isActive }) =>
+            `${
+              isActive ? "text-foreground" : "text-muted-foreground"
+            } transition-colors hover:text-foreground`
+          }
+        >
+          My Bookings
+        </NavLink>
       </nav>
       <Sheet>
         <SheetTrigger asChild>
@@ -91,6 +101,16 @@ export function TopNav() {
               }
             >
               Settings
+            </NavLink>
+            <NavLink
+              to="/dashboard/bookings"
+              className={({ isActive }) =>
+                `${
+                  isActive ? "text-foreground" : "text-muted-foreground"
+                } hover:text-foreground`
+              }
+            >
+              My Bookings
             </NavLink>
           </nav>
         </SheetContent>
