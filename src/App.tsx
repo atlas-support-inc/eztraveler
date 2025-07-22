@@ -11,6 +11,7 @@ import { MyBookingsPage } from "@/components/dashboard/bookings/MyBookingsPage";
 import { HotelDetailsPage } from "@/components/dashboard/HotelDetailsPage";
 import { AdminLayout } from "@/components/admin/AdminLayout";
 import { AdminHomePage } from "@/components/admin/AdminHomePage";
+import { BookingsPage } from "@/components/admin/bookings/BookingsPage";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
             }
           >
             <Route index element={<AdminHomePage />} />
+            <Route path="bookings" element={<BookingsPage />} />
           </Route>
 
           {/* Role-based redirector */}

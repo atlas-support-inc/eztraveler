@@ -9,13 +9,12 @@ export function HomePage() {
   const hotels = useQuery(api.hotels.queries.listHotels);
 
   return (
-    <div className="p-8">
+    <div className="p-1">
       <h1 className="text-3xl font-bold mb-8">
         Welcome, {user?.name}!
       </h1>
 
       <div>
-        <h2 className="text-2xl font-semibold mb-4">Available Hotels</h2>
         {hotels ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {hotels.map((hotel) => (

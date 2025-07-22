@@ -21,7 +21,10 @@ export default defineSchema({
     updatedAt: v.optional(v.number()),
   })
     .index("by_email", ["email"])
-    .index("by_role", ["role"]),
+    .index("by_role", ["role"])
+    .searchIndex("by_email_search", {
+      searchField: "email",
+    }),
 
   hotels: defineTable({
     name: v.string(),
@@ -54,5 +57,4 @@ export default defineSchema({
   })
     .index("by_user", ["userId"])
     .index("by_status", ["status"])
-    .index("by_user_and_status", ["userId", "status"]),
 });
