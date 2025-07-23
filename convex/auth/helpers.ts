@@ -1,6 +1,6 @@
 import { ConvexError } from "convex/values";
 import { getAuthUserId } from "@convex-dev/auth/server";
-import { QueryCtx, MutationCtx } from "../_generated/server"; // Adjust if your generated types are in a different path
+import { type QueryCtx, type MutationCtx } from "../_generated/server"; // Adjust if your generated types are in a different path
 
 type Context = QueryCtx | MutationCtx; // ActionCtx if you add actions later
 
