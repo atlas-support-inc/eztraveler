@@ -46,6 +46,7 @@ export function EditBookingModal({
       setIsOpen(false);
     } catch (error) {
       toast.error("Failed to update booking");
+      console.error(error);
     }
   };
 

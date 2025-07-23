@@ -76,7 +76,6 @@ export const listAll = query({
           .collect()
       : [];
     
-    const userIds = users.map((user) => user._id);
     const bookingsData = []
 
     for (const user of users) {
